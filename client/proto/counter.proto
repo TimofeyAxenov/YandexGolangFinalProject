@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package counter;
+
+option go_package = "Counter/proto";
+
+message Null {
+
+}
+
+message Task {
+    string taskid = 1;
+    int64 arg1 = 2;
+    string oper = 3;
+    int64 arg2 = 4;
+    int64 duration = 5;
+}
+
+message TaskResult {
+    string taskid = 1;
+    int64 result = 2;
+}
+
+service TaskExchanger {
+    rpc SendTask (Null) returns (Task);
+    rpc GetTask (TaskResult) returns (Null);
+}
